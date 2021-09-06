@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: nide-mel <nide-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/06 16:15:58 by nide-mel         ###   ########.fr       */
+/*   Created: 2021/02/20 15:44:58 by nide-mel          #+#    #+#             */
+/*   Updated: 2021/08/07 17:54:04 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "includes/libft.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *ftnew)
+{
+	if (lst)
+	{
+		if (*lst)
+			ft_lstlast(*lst)->next = ftnew;
+		else
+			*lst = ftnew;
+	}
+}

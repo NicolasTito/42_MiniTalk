@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: nide-mel <nide-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/06 16:15:58 by nide-mel         ###   ########.fr       */
+/*   Created: 2021/02/13 15:01:46 by nide-mel          #+#    #+#             */
+/*   Updated: 2021/08/07 17:26:02 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "includes/libft.h"
+
+void	ft_bzero(void *str, size_t n)
+{
+	size_t		i;
+
+	if (!str)
+		return ;
+	i = 0;
+	while (i < n)
+	{
+		*(char *)(str + i) = 0;
+		i++;
+	}
+}
