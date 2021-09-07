@@ -6,7 +6,7 @@
 /*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/07 18:02:00 by nide-mel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:10:43 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	ft_sigaction(int sig)
 		++i;
 	else
 	{
+		ft_putstr_fd("Received: ", 1);
 		ft_putnbr_fd(i, 1);
 		ft_putstr_fd("\n", 1);
 		exit(0);
@@ -28,24 +29,26 @@ static void	ft_sigaction(int sig)
 
 static void	send_msg(int pid, char *msg)
 {
+	int		bit;
 	int		i;
 	char	c;
 
-	while (*msg)
+	i = 0;
+	while (msg[i])
 	{
-		i = 8;
-		c = *msg++;
-		while (i--)
+		bit = 8;
+		c = msg[i++];
+		while (bit--)
 		{
-			if (c >> i & 1)
+			if (c >> bit & 1)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
 			usleep(100);
 		}
 	}
-	i = 8;
-	while (i--)
+	bit = 8;
+	while (bit--)
 	{
 		kill(pid, SIGUSR1);
 		usleep(100);
@@ -64,7 +67,6 @@ int	main(int ac, char **av)
 	ft_putstr_fd("Sent    : ", 1);
 	ft_putnbr_fd(ft_strlen(av[2]), 1);
 	ft_putchar_fd('\n', 1);
-	ft_putstr_fd("Received: ", 1);
 	s_sigaction.sa_handler = ft_sigaction;
 	s_sigaction.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &s_sigaction, 0);
