@@ -6,7 +6,7 @@
 /*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/07 18:59:26 by nide-mel         ###   ########.fr       */
+/*   Updated: 2021/09/07 19:00:58 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,10 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	i = -1;
-	while(av[1][++i])
+	while (av[1][++i])
 	{
-		if(ft_isdigit(av[1][i]) == 0)
-		{
-			ft_putstr_fd("!!!PID ERROR!!!\n", 1);
+		if (ft_isdigit(av[1][i]) == 0)
 			return (0);
-		}
 	}
 	ft_putstr_fd("Sent    : ", 1);
 	ft_putnbr_fd(ft_strlen(av[2]), 1);
