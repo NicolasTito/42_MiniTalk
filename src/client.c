@@ -6,7 +6,7 @@
 /*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/07 18:10:43 by nide-mel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:59:26 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,22 @@ static void	send_msg(int pid, char *msg)
 
 int	main(int ac, char **av)
 {
+	int					i;
 	struct sigaction	s_sigaction;
 
 	if (ac != 3)
 	{
-		ft_putstr_fd("!!!ERROR!!!\nINAVALID ARGUMENT!\n", 1);
+		ft_putstr_fd("!!!ERROR!!!\nINVALID ARGUMENT!\n", 1);
 		return (0);
+	}
+	i = -1;
+	while(av[1][++i])
+	{
+		if(ft_isdigit(av[1][i]) == 0)
+		{
+			ft_putstr_fd("!!!PID ERROR!!!\n", 1);
+			return (0);
+		}
 	}
 	ft_putstr_fd("Sent    : ", 1);
 	ft_putnbr_fd(ft_strlen(av[2]), 1);
