@@ -6,7 +6,7 @@
 /*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/07 17:02:43 by nide-mel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:02:00 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static void	ft_sigaction(int sig)
 
 static void	send_msg(int pid, char *msg)
 {
-	int	i;
-	int	j;
+	int		i;
+	char	c;
 
-	i = -1;
-	j = -1;
-	while (msg[++i])
+	while (*msg)
 	{
-		while (++j < 8)
+		i = 8;
+		c = *msg++;
+		while (i--)
 		{
-			if (msg[i] & 0x80 >> j)
-				kill(pid, SIGUSR1);
-			else
+			if (c >> i & 1)
 				kill(pid, SIGUSR2);
+			else
+				kill(pid, SIGUSR1);
 			usleep(100);
 		}
 	}
