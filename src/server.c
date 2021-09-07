@@ -6,7 +6,7 @@
 /*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:01:19 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/07 16:42:13 by nide-mel         ###   ########.fr       */
+/*   Updated: 2021/09/07 17:39:07 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static void	ft_sigaction(int sig, siginfo_t *sinfo, void *context)
 	(void)context;
 	if (!cpid)
 		cpid = sinfo->si_pid;
-	c |= (sig, SIGUSR2);
+	if (sig == SIGUSR1)
+		c ^= 0x80 >> i;
+	else if (sig == SIGUSR2)
+		c |= 0x80 >> i;
 	if (++i == 8)
 	{
 		i = 0;
