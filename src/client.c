@@ -6,7 +6,7 @@
 /*   By: nide-mel <nide-mel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:01:03 by nide-mel          #+#    #+#             */
-/*   Updated: 2021/09/07 16:57:37 by nide-mel         ###   ########.fr       */
+/*   Updated: 2021/09/07 17:00:09 by nide-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int	main(int ac, char **av)
 		ft_putstr_fd("!!!ERROR!!!\nINAVALID ARGUMENT!\n", 1);
 		return (0);
 	}
-	send_msg(av[2], (int)ft_atoi(av[1]));
+	send_msg((int)ft_atoi(av[1]), av[2]);
 	return (0);
 }
